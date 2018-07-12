@@ -1,0 +1,17 @@
+.posi-title{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20px;
+}
+.jiushi{
+	width: 86%;
+	margin:0 auto;
+}
+#info-list img{
+	height:70px;
+	width:100px;
+}
+#info-list td,#info-list th{
+	vertical-align: middle;
+}

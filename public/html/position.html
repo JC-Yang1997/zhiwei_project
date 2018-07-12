@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>position</title>
+	<link rel="stylesheet" type="text/css" href="../lib/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../css/position.css">
+</head>
+<body>
+	<!-- 添加职位信息模态框 -->
+	<div class="modal fade" id="posiModal" tabindex="-1" role="dialog" aria-labelledby="posiModalLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="posiModalLabel">职位信息</h4>
+		      </div>
+		      <div class="modal-body">
+		      	<!-- 录入职位信息表单 -->
+		        <form id="pos-form">
+		         <div class="alert alert-danger hide pos-jg" role="alert">职位信息录入失败，请稍后重试！</div>
+	        	<div class="form-group">
+				    <label for="pos-logo">公司logo</label>
+				    <input class="form-control" name="logo" type="file" id="pos-logo">
+				    <p class="help-block">未添加任何文件</p>
+				  </div>
+				  <div class="form-group">
+				    <label for="name">职位名称</label>
+				    <input type="text" name="name" class="form-control" id="name" placeholder="请填写职位名称">
+				  </div>
+				  <div class="form-group">
+				    <label for="company">公司名称</label>
+				    <input type="text" name="company" class="form-control" id="company" placeholder="请输入您的公司名称">
+				  </div>
+				  <div class="form-group">
+				    <label for="workexperience">工作经验</label>
+				    <input type="text" name="experience" class="form-control" id="workexperience" placeholder="请输入您的工作经验">
+				  </div>
+				  <div class="form-group">
+				    <label for="worktype">职位类型</label>
+				    <input type="text" name="type" class="form-control" id="worktype" placeholder="请输入您的职位类型">
+				  </div>
+				  <div class="form-group">
+				    <label for="workplace">工作地点</label>
+				    <input type="text" name="address" class="form-control" id="workplace" placeholder="请输入您的工作地点">
+				  </div>
+				  <div class="form-group">
+				    <label for="workprice">岗前薪资</label>
+				    <input type="text" name="money" class="form-control" id="workprice" placeholder="请输入您的期望薪资">
+				  </div>
+				</form>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" id="addPosition" class="btn btn-primary">提交</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+	<!-- 修改职位信息模态框 -->
+
+	<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="updateModalLabel">职位信息</h4>
+		      </div>
+		      <div class="modal-body">
+		        <form id="update-form">
+		         <div class="alert alert-danger hide pos-jg" role="alert">职位信息修改失败，请稍后重试！</div>
+		         <div class="form-group hide">
+				    <label for="update-id">职位名称</label>
+				    <input type="text" name="_id" class="form-control" id="update-id">
+				  </div>
+	        	<div class="form-group">
+				    <label for="update-logo">公司logo</label>
+				    <input class="form-control" name="logo" type="file" id="update-logo">
+				    <p class="help-block">未添加任何文件</p>
+				  </div>
+				  <div class="form-group">
+				    <label for="update-name">职位名称</label>
+				    <input type="text" name="name" class="form-control" id="update-name" placeholder="请填写职位名称">
+				  </div>
+				  <div class="form-group">
+				    <label for="update-company">公司名称</label>
+				    <input type="text" name="company" class="form-control" id="update-company" placeholder="请输入您的公司名称">
+				  </div>
+				  <div class="form-group">
+				    <label for="update-experience">工作经验</label>
+				    <input type="text" name="experience" class="form-control" id="update-experience" placeholder="请输入您的工作经验">
+				  </div>
+				  <div class="form-group">
+				    <label for="update-type">职位类型</label>
+				    <input type="text" name="type" class="form-control" id="update-type" placeholder="请输入您的职位类型">
+				  </div>
+				  <div class="form-group">
+				    <label for="update-address">工作地点</label>
+				    <input type="text" name="address" class="form-control" id="update-address" placeholder="请输入您的工作地点">
+				  </div>
+				  <div class="form-group">
+				    <label for="update-money">岗前薪资</label>
+				    <input type="text" name="money" class="form-control" id="update-money" placeholder="请输入您的期望薪资">
+				  </div>
+				</form>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" id="updatePosition" class="btn btn-primary">修改</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+
+	<div class="container">
+		<div class="header"></div>
+	</div>
+
+
+	<div class="container jiushi">
+	 <h4 class="posi-title text-center"><span class="pull-left">职位管理</span><button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#posiModal">添加</button></h4>
+
+	<table class="table table-bordered table-striped">
+	  <thead>
+	  	<tr>
+	  		<th class="text-center">序号</th>
+	  		<th class="text-center">LOGO</th>
+	  		<th class="text-center">职位名称</th>
+	  		<th class="text-center">公司名称</th>
+	  		<th class="text-center">工作经验</th>
+	  		<th class="text-center">职位类型</th>
+	  		<th class="text-center">工作地点</th>
+	  		<th class="text-center">岗前薪资</th>
+	  		<th colspan="2"  class="text-center">操作</th>
+	  	</tr>
+	  </thead>
+	  <tbody id="info-list">
+	  	<script type="text/html" id="pos-list">
+	  	{{each list pos index}}
+	  	<tr>
+	  		<td class="text-center hide mogo-id">{{pos._id}}</td>
+	  		<td class="text-center">{{index+1}}</td>
+		  	<td class="text-center"><img src="{{pos.logo}}"></td>
+		  	<td class="text-center">{{pos.name}}</td>
+		  	<td class="text-center">{{pos.company}}</td>
+		  	<td class="text-center">{{pos.experience}}</td>
+		  	<td class="text-center">{{pos.type}}</td>
+		  	<td class="text-center">{{pos.address}}</td>
+		  	<td class="text-center">{{pos.money}}</td>
+		  	<td class="text-center"><a class="xiugai" data-toggle="modal" data-target="#updateModal" style="cursor: pointer;">修改</a></td>
+		  	<td class="text-center" style="cursor: pointer;"><a class="shanchu">删除</a></td>
+		  </tr>
+		  {{/each}}
+		</script>
+	  </tbody>
+	  <tfoot></tfoot>
+	</table>
+
+	<nav aria-label="Page navigation">
+	  <ul class="pagination pull-right">
+	    <li>
+	      <a href="#" aria-label="Previous">
+	        <span aria-hidden="true">&laquo;</span>
+	      </a>
+	    </li>
+	    <li class="active"><a href="#">1</a></li>
+	    <li><a href="#">2</a></li>
+	    <li><a href="#">3</a></li>
+	    <li><a href="#">4</a></li>
+	    <li><a href="#">5</a></li>
+	    <li>
+	      <a href="#" aria-label="Next">
+	        <span aria-hidden="true">&raquo;</span>
+	      </a>
+	    </li>
+	  </ul>
+	</nav>	
+
+	</div>
+</body>
+	<script src="../lib/jquery/jquery-1.12.4.min.js"></script>
+	<script src="../lib/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../lib/artTemplate/template-web.js"></script>
+	<script src="../js/common/Header.js"></script>
+	<script src="../js/common/loginModal.js"></script>
+	<script src="../js/common/regModal.js"></script>
+	<script src="../js/position/position.js"></script>
+</html>
