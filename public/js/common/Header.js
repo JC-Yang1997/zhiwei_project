@@ -26,10 +26,12 @@ Header.template = `<nav class="navbar navbar-inverse">
 		        <li data-toggle="modal" data-target="#loginModal"><a href="#">登录</a></li>
 		        <li data-toggle="modal" data-target="#regModal"><a href="#">注册</a></li>
 		      </ul>
-		      <ul class="nav navbar-nav navbar-right hide login-success">
-		        <li id="loginup"><a href="#"></a></li>
-		        <li id="loginout"><a href="#">退出</a></li>
-		      </ul>
+		      
+		       <ul class="nav navbar-nav navbar-right hide login-success">
+		       <li id="loginup"><a href="#" id="username"></a></li>
+		       <li id="loginout"><a href="#">退出</a></li>
+		       </ul>
+		      
 		    </div>
 		  </div>
 		</nav>`;

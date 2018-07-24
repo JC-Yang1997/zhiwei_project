@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieSession({
 	name:"pos-users",
 	secret:"yangjinchun",
-	maxAge: 1000 * 60 * 1000
+	maxAge: 15 * 60 * 1000
 }));
 
 app.use('/', indexRouter);

@@ -15,7 +15,9 @@ var storage = multer.diskStorage({
 	//配置保存文件的文件名规则
 	filename:function(req,file,cb){
 		//logo-时间戳(如：21655164651).gif
-		cb(null,file.fieldname + '-' + Date.now() + file.originalname.slice(file.originalname.lastIndexOf(".")));
+		//加上时间戳（不怕占内存的情况下可以这样）
+		// '-' + Date.now() +
+		cb(null,file.fieldname + '-' + file.originalname);
 	}
 });
 

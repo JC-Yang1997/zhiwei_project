@@ -47,6 +47,7 @@ $.extend(LoginModal.prototype,{
 				location = "/html/position.html";
 			}else{
 				$(".login_error").removeClass("hide");
+				$(".login_error").html(data.res_body.content);
 			}
 		},"json");
 	}

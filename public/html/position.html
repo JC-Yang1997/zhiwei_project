@@ -119,8 +119,11 @@
 
 
 	<div class="container jiushi">
-	 <h4 class="posi-title text-center"><span class="pull-left">职位管理</span><button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#posiModal">添加</button></h4>
-
+	 <h4 class="posi-title text-center"><span class="pull-left">职位管理</span>
+	 	<button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#posiModal" id="tianjia">添加</button></h4>
+	 <h4 style="text-align: center;">
+	 	<span style="color: red;" class="tishi">…………坚决抵抗一切删除数据、修改数据等不友好行为（请联系管理员获取操作权限）…………</span>
+	 </h4>
 	<table class="table table-bordered table-striped">
 	  <thead>
 	  	<tr>
@@ -132,7 +135,7 @@
 	  		<th class="text-center">职位类型</th>
 	  		<th class="text-center">工作地点</th>
 	  		<th class="text-center">岗前薪资</th>
-	  		<th colspan="2"  class="text-center">操作</th>
+	  		<th colspan="2"  class="text-center" id="caozuo">操作</th>
 	  	</tr>
 	  </thead>
 	  <tbody id="info-list">
@@ -148,8 +151,8 @@
 		  	<td class="text-center">{{pos.type}}</td>
 		  	<td class="text-center">{{pos.address}}</td>
 		  	<td class="text-center">{{pos.money}}</td>
-		  	<td class="text-center"><a class="xiugai" data-toggle="modal" data-target="#updateModal" style="cursor: pointer;">修改</a></td>
-		  	<td class="text-center" style="cursor: pointer;"><a class="shanchu">删除</a></td>
+		  	<td class="text-center td-xiugai"><a class="xiugai" data-toggle="modal" data-target="#updateModal" style="cursor: pointer;">修改</a></td>
+		  	<td class="text-center td-shanchu" style="cursor: pointer;"><a class="shanchu">删除</a></td>
 		  </tr>
 		  {{/each}}
 		</script>
@@ -159,17 +162,17 @@
 
 	<nav aria-label="Page navigation">
 	  <ul class="pagination pull-right">
-	    <li>
+	    <li class="fanye-l">
 	      <a href="#" aria-label="Previous">
 	        <span aria-hidden="true">&laquo;</span>
 	      </a>
 	    </li>
-	    <li class="active"><a href="#">1</a></li>
-	    <li><a href="#">2</a></li>
-	    <li><a href="#">3</a></li>
-	    <li><a href="#">4</a></li>
-	    <li><a href="#">5</a></li>
-	    <li>
+	    <li class="active pageid"><a href="#">1</a></li>
+	    <li class="pageid"><a href="#">2</a></li>
+	    <li class="pageid"><a href="#">3</a></li>
+	    <li class="pageid"><a href="#">4</a></li>
+	    <li class="pageid"><a href="#">5</a></li>
+	    <li class="fanye-r">
 	      <a href="#" aria-label="Next">
 	        <span aria-hidden="true">&raquo;</span>
 	      </a>

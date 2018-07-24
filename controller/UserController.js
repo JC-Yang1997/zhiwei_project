@@ -4,7 +4,7 @@ const PositionModel = require("../model/PositionModel");
 const UserController = {
 	register:function(req,res,next){
 		const {username,password,email} = req.body;
-		UserModel.save({username,password,email},(msg)=>{
+		UserModel.save({username,password,email,right:false},(msg)=>{
 			res.json({
 				res_code:1,
 				res_error:"",
@@ -36,28 +36,27 @@ const UserController = {
 	},
 	login:function(req,res,next){
 		const {username,password} = req.body;
-		console.log(req.body)
 		UserModel.checkusers({username,password},(data)=>{
-			console.log(data);
-			if(data.length===1){
+			// console.log(data);
+			if(data){
 				req.session.LoginUser = data[0].username;
 				res.json({
 					res_code:1,
 					res_error:"",
-					res_body:{username:data[0].username,email:data[0].email}
+					res_body:data
 				});
 			}else{
 				res.json({
 					res_code:-1,
-					res_error:"用户名或密码错误",
-					res_body:{}
+					res_error:"",
+					res_body:{content:"用户名密码错误……"}
 				});
 			}
 		},(err)=>{
 			res.json({
 				res_code:0,
 				res_error:err,
-				res_body:{}
+				res_body:"操作出错！！！"
 			});
 		});
 	},
@@ -76,6 +75,22 @@ const UserController = {
 				res_body:{}
 			});
 		}
+	},
+	checkRight:function(req,res,next){
+		const {username} = req.body;
+		UserModel.checkright({username},(data)=>{
+			res.json({
+					res_code:1,
+					res_error:"",
+					res_body:data
+				});
+		},(err)=>{
+			res.json({
+				res_code:0,
+				res_error:err,
+				res_body:{}
+			});
+		});
 	},
 	loginOut:function(req,res,next){
 		req.session = null;

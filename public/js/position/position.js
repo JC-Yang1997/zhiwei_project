@@ -12,10 +12,26 @@ $.extend(position.prototype,{
 		const that = this;
 		$("#addPosition").on("click",$.proxy(this.handlePosition,this));
 		$("#updatePosition").on("click",$.proxy(this.updatePosition,this));
-		$(".pagination").on("click","li",function(){
+		$(".pagination").on("click",".pageid",function(){
 			const currentPage = $(this).find("a").text();
 			$(this).addClass("active").siblings().removeClass("active");
 			that.listByPage(currentPage);
+		});
+		$(".pagination").on("click",".fanye-r",function(){
+			const currentPage = $(".pagination").find(".active a").text();
+			const nextPage = parseInt(currentPage) + 1;
+			if(nextPage<=5){
+			 $(".pagination").find(".active").removeClass("active").next().addClass("active");
+			 that.listByPage(nextPage);
+			}
+		});
+		$(".pagination").on("click",".fanye-l",function(){
+			const currentPage = $(".pagination").find(".active a").text();
+			const nextPage = parseInt(currentPage) - 1;
+			if(nextPage>=1){
+			 $(".pagination").find(".active").removeClass("active").prev().addClass("active");
+			 that.listByPage(nextPage);
+			}
 		});
 	},
 	updatePosition:function(){
@@ -40,6 +56,7 @@ $.extend(position.prototype,{
 		});
 	},
 	findThisPosition:function(currentid){
+		
 		$.post("/api/positions/findthis",{_id:currentid},function(data){
 			if(data.res_code===1){
 				$("#update-id").val(data.res_body[0]._id);
@@ -68,6 +85,7 @@ $.extend(position.prototype,{
 			success:function(data){
 				if(data.res_code===1){
 					$("#posiModal").modal("hide");
+					location.reload();
 				}else{
 					$(".pos-jg").removeClass("hide");
 				}
@@ -82,6 +100,26 @@ $.extend(position.prototype,{
 			if(data.res_code===1){
 				const html = template("pos-list",{list:data.res_body});
 				$("#info-list").html(html);
+				//判断用户是否有操作权限
+				if(true){
+					const name = $("#username").html().slice(4,);
+					$.post("/api/users/checkright",{username:name},function(data){
+						// console.log(data);
+						if(data.res_body[0].right==="false"){
+							$(".tishi").removeClass("hide");
+							$("#tianjia").addClass("hide");
+							$("#caozuo").addClass("hide");
+							$(".td-xiugai").addClass("hide");
+							$(".td-shanchu").addClass("hide");
+						}else{
+							$(".tishi").addClass("hide");
+							$("#tianjia").removeClass("hide");
+							$("#caozuo").removeClass("hide");
+							$(".td-xiugai").removeClass("hide");
+							$(".td-shanchu").removeClass("hide");
+						}
+					},"json");
+				}
 				//用了模板引擎的点击要紧跟着模板引擎后面（防止异步导致点击失效）
 				$(".xiugai").on("click",function(){
 					const currentid = $(".mogo-id",this.parentNode.parentNode).text();
@@ -94,7 +132,7 @@ $.extend(position.prototype,{
 						const currentid = $(".mogo-id",this.parentNode.parentNode).text();
 						$.post("/api/positions/findthis",{_id:currentid},function(data){
 							if(data.res_code===1){
-								console.log(data.res_body[0]._id);
+								// console.log(data.res_body[0]._id);
 								//异步函数嵌套
 								$.post("/api/positions/dropthis",{_id:data.res_body[0]._id},function(cb_code){
 										if(cb_code.res_code===1){

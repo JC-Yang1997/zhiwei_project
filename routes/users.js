@@ -13,5 +13,6 @@ router.post('/addposition',UserController.addposition);
 router.post('/login',UserController.login);
 router.get('/check',UserController.checkSession);
 router.get('/loginOut',UserController.loginOut);
+router.post('/checkright',UserController.checkRight);
 
 module.exports = router;
