@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost:27017/zhiwei_project");
+// mongoose.connect("mongodb://localhost:27017/zhiwei_project");
 const schema = mongoose.Schema({
 	logo:String,
 	name:String,
